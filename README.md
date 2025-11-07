@@ -22,6 +22,12 @@ python main.py "model_name.pth" --train
 ```
 Every agent will be trained on 10M frames, where $\epsilon$ decreases over the first 1M frames to reach $0.1$. The model will also be updated every 4 frames (like said in the paper).
 
+If you want to keep the same proportion but train on less frames, here is how 
+you can do :
+```bash
+python main.py "model_name.pth" --train --frames nb_frames
+```
+
 ### Loading and Testing a Trained Agent
 
 Load a pre-trained model and watch it play:
