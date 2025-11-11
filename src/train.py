@@ -1,4 +1,5 @@
 import random
+import sys
 
 import gymnasium as gym
 import numpy as np
@@ -14,7 +15,7 @@ from .utils.utils import _clip_reward, _process_frame
 def train_dqn(env:gym.Env, batch_size:int=32, total_frames:int = 10000000, 
               epsilon:float=1.0, min_epsilon:float=0.1, k:int=4, gamma:float = 0.99, 
               filename:str | None = None, device:str | None = None):
-    decay_frames = np.max(total_frames // 10, 1000000)
+    decay_frames = max(total_frames // 10, 1000000)
     episode = 0
 
     nb_state = env.observation_space.shape[0]
@@ -93,7 +94,13 @@ def train_dqn(env:gym.Env, batch_size:int=32, total_frames:int = 10000000,
 
         episode += 1
         if episode % 100 == 0:
-            print(f"Episode {episode}, Frames: {frame:,}, Epsilon: {eps:.3f}")
+            progress = int((frame / total_frames) * 100)
+            bar_length = (progress * 20) // 100
+            sys.stdout.write('\r')
+            sys.stdout.write('[%-20s] %d%% | Frames: %d/%d | Epsilon: %.3f' % 
+                   ('=' * bar_length, progress, frame, total_frames, eps))
+            sys.stdout.flush()
+            
 
     file_path = f'./src/models/{filename if filename is not None else "default.pth"}'
     torch.save(model.state_dict(), file_path)

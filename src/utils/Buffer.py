@@ -5,8 +5,8 @@ import numpy as np
 
 
 class Buffer():
-    def __init__(self, capicity):
-        self.buffer = deque(maxlen=capicity)
+    def __init__(self, capacity):
+        self.buffer = deque(maxlen=capacity)
 
     def add(self, x):
         self.buffer.append(x)

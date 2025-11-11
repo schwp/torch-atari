@@ -36,6 +36,6 @@ def play_game(env:gym.Env, filename:str, device:str):
 
         frame_stack.add(_process_frame(next_state))
 
-        sleep(0.01)
+        sleep(0.02)
 
     env.close()
