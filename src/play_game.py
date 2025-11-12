@@ -19,7 +19,7 @@ def play_game(env:gym.Env, filename:str, device:str):
     state, _ = env.reset()
     done = False
 
-    frame_stack = Buffer(capicity=4)
+    frame_stack = Buffer(capacity=4)
     s_t = _process_frame(state)
 
     for _ in range(4):
