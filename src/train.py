@@ -26,7 +26,7 @@ def train_dqn(env:gym.Env, batch_size:int=32, total_frames:int = 10000000,
     optimizer = optim.RMSprop(model.parameters(), lr=0.00025, alpha=0.95, eps=1e-2)
     criterion = nn.MSELoss()
 
-    buffer = Buffer(capicity=100000)
+    buffer = Buffer(capacity=100000)
 
     frame = 0
     eps = epsilon
@@ -36,7 +36,7 @@ def train_dqn(env:gym.Env, batch_size:int=32, total_frames:int = 10000000,
         # Init the environnement
         state, _ = env.reset()
         done = False
-        frame_stack = Buffer(capicity=4)
+        frame_stack = Buffer(capacity=4)
         s_t = _process_frame(state)
 
         for _ in range(4):
@@ -104,4 +104,4 @@ def train_dqn(env:gym.Env, batch_size:int=32, total_frames:int = 10000000,
 
     file_path = f'./src/models/{filename if filename is not None else "default.pth"}'
     torch.save(model.state_dict(), file_path)
-    print(f'Your model has been saved in "{file_path}"')
+    print(f'\nYour model has been saved in "{file_path}"')
