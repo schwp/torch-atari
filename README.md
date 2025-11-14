@@ -1,4 +1,4 @@
-# torch-breakout
+# torch-atari
 
 Playing Atari Breakout with a DQN Agent, using PyTorch. This implementation is
 based on [DeepMind 2013 paper]("https://arxiv.org/pdf/1312.5602") on Deep Reinforcement Learning to play Atari games.
